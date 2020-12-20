@@ -32,7 +32,7 @@ def refresh_posts():
 		totalimgs = totalimgs + 1
 		print('Getting submission number '+ str(i) +' / 500!')
 		if ".jpg" not in submission.url and ".png" not in submission.url:
-			print('Post is not a jpg or png (or should be)--------------------------')
+			print('Post is not a jpg or png --------------------------')
 			print(str(submission.url))
 			totalimgs = totalimgs - 1
 			continue

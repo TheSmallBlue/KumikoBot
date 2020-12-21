@@ -62,7 +62,7 @@ async def on_ready():
 async def on_message(message):
 	if message.author == client.user:
 		return
-	if "show me a kumiko" in message.content.lower():
+	if "showmeakumiko" in message.content.lower().replace(' ',''):
 		postnumber = random.randint(1,totalimgs)
 		await message.channel.send(embed = create_embed(posts[postnumber],authors[postnumber],posturls[postnumber]))
 

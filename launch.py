@@ -64,7 +64,12 @@ async def on_message(message):
 		return
 	if "showmeakumiko" in message.content.lower().replace(' ',''):
 		postnumber = random.randint(1,totalimgs)
-		await message.channel.send(embed = create_embed(posts[postnumber],authors[postnumber],posturls[postnumber]))
+		try:
+			await message.channel.send(embed = create_embed(posts[postnumber],authors[postnumber],posturls[postnumber]))
+		except discord.errors.Forbidden:
+			await message.author.send("I don't have enough permissions to talk on that channel! So I'll send your Kumiko through here instead!")
+			await message.author.send(embed = create_embed(posts[postnumber],authors[postnumber],posturls[postnumber]))
+
 
 	if "refresh the kumikos" in message.content.lower():
 		refresh_posts()

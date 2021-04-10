@@ -56,6 +56,8 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
+	print('Connected servers: ')
+	print([x.name for x in client.guilds])
 	print(f'{client.user} has connected to Discord!')
 
 @client.event
@@ -63,10 +65,13 @@ async def on_message(message):
 	if message.author == client.user:
 		return
 	if "showmeakumiko" in message.content.lower().replace(' ',''):
+		
 		postnumber = random.randint(1,totalimgs)
 		try:
+			print('Someone over at', message.guild.name, 'asked for a Kumiko, and it was sent succesfully!')
 			await message.channel.send(embed = create_embed(posts[postnumber],authors[postnumber],posturls[postnumber]))
 		except discord.errors.Forbidden:
+			print('Someone over at', message.guild.name, 'asked for a Kumiko, but I couldnt type in there so I sent it through DMs instead!')
 			await message.author.send("I don't have enough permissions to talk on that channel! So I'll send your Kumiko through here instead!")
 			await message.author.send(embed = create_embed(posts[postnumber],authors[postnumber],posturls[postnumber]))
 
